@@ -1,0 +1,214 @@
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TextInput, Button, Alert, TouchableOpacity } from 'react-native';
+import { RadioButton } from 'react-native-paper';
+import RadioButtonRN from 'radio-buttons-react-native';
+import * as SQLite from 'expo-sqlite';
+//db creaion
+const db = SQLite.openDatabase('db.cricketDb') // returns Database object
+
+
+
+
+
+
+
+
+export default function HomeScreen({ navigation }) {
+  //hooks
+  const [hostteam, setHostteam] = useState('Host Team');
+  const [visitorteam, setVisitorteam] = useState('Visitor Team');
+  const [tossvalue, setTossvalue] = useState('');
+  const [optedvalue, setOptedvalue] = useState('bat');
+  const [overs, setOvers] = useState('');
+
+
+
+
+  useEffect(() => {
+    createTable();
+   // deleteTable();
+  }, []);
+  //teams table creation 
+  const createTable = () => {
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS matches (id INTEGER PRIMARY KEY AUTOINCREMENT,team1 TEXT,team2 TEXT,toss TEXT,opted TEXT,overs INTEGER)'
+      )
+    })
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS teams (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,total_matches INTEGER,won INTEGER,lost INTEGER)'
+      )
+    })
+
+  }
+
+  const insert = () => {
+    //data validation
+    if (!hostteam || !visitorteam || !tossvalue || !optedvalue || !overs) {
+      alert('Please all the details');
+      return;
+    }
+    //inserting data into matches table
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO matches (team1,team2,toss,opted,overs) VALUES (?,?,?,?,?)', [hostteam, visitorteam, tossvalue, optedvalue, overs],
+        (tx, results) => {
+
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+            console.log('inserted matches');
+            alert('inseted matches');
+          }
+        },
+        (tx, error) => console.log('Error', error))
+    });
+
+
+    //inserting data into teams table
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO teams (name,total_matches,won,lost) values (?,?,?,?)', [hostteam, 1, 1, 1],
+        (tx, results) => {
+
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+            console.log('inserted team 1');
+            alert('inseted teams');
+          }
+        },
+        (tx, error) => console.log('Error', error))
+    });
+    //inserting data into teams table
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO teams (name,total_matches,won,lost) values (?,?,?,?)', [visitorteam, 1, 1, 1],
+        (tx, results) => {
+
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+            console.log('inserted team 2');
+            //alert('inseted teams');
+          }
+        },
+        (tx, error) => console.log('Error', error))
+    });
+  }
+  //deleting data
+  const deleteTable = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'delete from matches'
+      )
+    })
+  }
+
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Teams</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Host Team"
+        onChangeText={(value) => setHostteam(value)}
+
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={(value) => setVisitorteam(value)}
+        placeholder="Visitor Team"
+      />
+      <Text style={styles.text}>Toss Won By ?</Text>
+      <RadioButton.Group onValueChange={newValue => setTossvalue(newValue)} value={tossvalue}>
+        <View style={styles.radiobutton}>
+
+          <RadioButton color='green' value={hostteam} />
+          <Text style={{ marginTop: 7 }}>{hostteam}</Text>
+        </View>
+        <View style={{ flexDirection: 'row', }}>
+
+          <RadioButton color='green' value={visitorteam} />
+          <Text style={{ marginTop: 7 }}>{visitorteam}</Text>
+        </View>
+      </RadioButton.Group>
+      <Text style={styles.text}>Opted to ?</Text>
+      <RadioButton.Group onValueChange={newValue => setOptedvalue(newValue)} value={optedvalue}>
+        <View style={styles.radiobutton}>
+
+          <RadioButton color='green' value="bat" />
+          <Text style={{ marginTop: 7 }}>Bat</Text>
+        </View>
+        <View style={{ flexDirection: 'row', }}>
+
+          <RadioButton color='green' value="bowl" />
+          <Text style={{ marginTop: 7 }}>Bowl</Text>
+        </View>
+      </RadioButton.Group>
+      <Text style={styles.text}>Overs?</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="16"
+        keyboardType='numeric'
+        onChangeText={(value) => setOvers(value)}
+      />
+
+
+      <View style={styles.buttoncontainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('AdvancedSettings')}>
+          <Text style={styles.advancedtext}   >Advanced Settings</Text>
+        </TouchableOpacity >
+        <Button
+          color="green"
+          title="Start match"
+
+          onPress={insert}
+
+        />
+
+
+      </View>
+
+    </View>
+
+
+
+
+
+  );
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 5,
+    padding: 10
+
+  },
+  text: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: 'green',
+    marginLeft: 10
+  },
+  input: {
+    height: 40,
+    margin: 8,
+    borderWidth: 1,
+    padding: 10,
+  },
+  buttoncontainer: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  advancedtext: {
+    marginTop: 5,
+    fontSize: 15,
+    marginLeft: 10
+  },
+  radiobutton: {
+    marginBottom: 5,
+    marginTop: 5,
+    flexDirection: 'row',
+  },
+
+});

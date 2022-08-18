@@ -1,0 +1,97 @@
+import * as React from 'react';
+import { StatusBar } from "expo-status-bar";
+import { View, Text,Image,Button,Modal,Dimensions,width,SafeAreaView} from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity,Alert } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import {useState,useEffect} from "react";
+import { useNavigation } from '@react-navigation/native';
+import * as SQLite from 'expo-sqlite';
+//db creaion
+const db = SQLite.openDatabase('db.m') // returns Database object
+
+
+const DetailsScreen = () => {
+  let [flatListItems, setFlatListItems] = useState([]);
+
+  useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM batting',
+        [],
+        (tx, results) => {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i)
+            temp.push(results.rows.item(i));
+          setFlatListItems(temp);
+        }
+      );
+    });
+  });
+
+  let listViewItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 0.2,
+          width: '100%',
+          backgroundColor: '#808080'
+        }}
+      />
+    );
+  };
+
+  let listItemView = (item) => {
+    return (
+      <View
+      
+        
+        style={{ backgroundColor: 'white', padding: 20 }}>
+        <Text>match id: {item.match_id}</Text>
+        <Text>team name: {item.teamname}</Text>
+        <Text>innings : {item.innings}</Text>
+        <Text>name: {item.batsman_name}</Text>
+        <Text>run : {item.run}</Text>
+        <Text>ball: {item.ball}</Text>
+        <Text> six: {item.six}</Text>
+        <Text>fours: {item.four}</Text>
+        <Text>SR: {item.strikerate}</Text>
+        <Text>outtype: {item.out_type}</Text>
+        <Text>support: {item.support}</Text>
+        <Text>bowler: {item.bowler}</Text>
+        
+        {/* // //match_id,teamname,innings,bowler_name,over,maiden,bowler_run,wickets,economy
+        // style={{ backgroundColor: 'white', padding: 20 }}>
+        // <Text>match id: {item.match_id}</Text>
+        // <Text>team name: {item.teamname}</Text>
+
+        // <Text>innings : {item.innings}</Text>
+        // <Text>name: {item.bowler_name}</Text>
+        // <Text>over: {item.over}</Text>
+        // <Text>maiden : {item.maiden}</Text>
+        // <Text>run: {item.bowler_run}</Text>
+        // <Text> wicket: {item.wickets}</Text>
+        // <Text>economy: {item.economy}</Text> */}
+        
+    
+      </View>
+    );
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1 }}>
+          <FlatList
+            data={flatListItems}
+            ItemSeparatorComponent={listViewItemSeparator}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => listItemView(item)}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default DetailsScreen;
