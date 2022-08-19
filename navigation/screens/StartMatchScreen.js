@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, Alert,BackHandler } from 'react-native';
 import HomeScreen from './CricketMatchScreen';
 import * as SQLite from 'expo-sqlite';
 //db creaion
@@ -40,6 +40,25 @@ export default function StartMatchScreen({ route, navigation }) {
     useEffect(() => {
         createTable2();
         fetch();
+
+        const backAction = () => {
+            Alert.alert("Hold on!", "Are you sure to exit the Match", [
+              {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+              },
+              { text: "YES", onPress: () => navigation.navigate('MainContainer') }
+            ]);
+            return true;
+          };
+      
+          const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+          );
+      
+          return () => backHandler.remove();
        
     },[]);
 

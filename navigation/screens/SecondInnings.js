@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, SwipeableListView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, SwipeableListView ,BackHandler} from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Button, Checkbox } from 'react-native-paper';
 import * as SQLite from 'expo-sqlite';
@@ -1269,6 +1269,24 @@ export default function SecondInnings({ navigation, route }) {
     useEffect(() => {
         createTable3();
         FetchData4();
+        const backAction = () => {
+            Alert.alert("Hold on!", "Are you sure to exit the Match", [
+              {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+              },
+              { text: "YES", onPress: () => navigation.navigate('MainContainer') }
+            ]);
+            return true;
+          };
+      
+          const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+          );
+      
+          return () => backHandler.remove();
         
     }, []);
 

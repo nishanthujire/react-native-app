@@ -92,7 +92,7 @@ export default function TeamsScreen() {
         <Image source={require('../screens/image/profile.jpg')} style={{ width: 50, height: 50, borderRadius: 30 }} />
         <TouchableOpacity style={{ marginLeft: 15, marginTop: 5, flex: 1 }}
           onPress={() => navigatePlayerDetails(item)} >
-          <Text style={{ fontWeight: "bold" }}>{item.team_name} & {item.team_id}</Text>
+          <Text style={{ fontWeight: "bold" }}>{item.team_name}</Text>
           <View style={styles.row}>
 
             <Text style={{ marginTop: 5 }}>Matches: </Text>

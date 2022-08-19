@@ -1,6 +1,6 @@
 import { setStatusBarHidden } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, Image ,BackHandler} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 // import AntDesign from 'react-native-vector-iconsAntDesign';
 import { RadioButton } from 'react-native-paper';
@@ -21,6 +21,18 @@ export default Matchtie = ({ route, navigation }) => {
     }, 1000);
     createTable5();
     insertData3();
+    const backAction = () => {
+      
+      navigation.navigate('MainContainer');
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
   }, []);
 
   const createTable5 = () => {
@@ -50,9 +62,12 @@ export default Matchtie = ({ route, navigation }) => {
     var text = "match tied"
     console.log(text);
 
+    var d =  new Date().toLocaleString();
+    console.log(d);
+
     db.transaction(tx => {
-      tx.executeSql('INSERT INTO result (match_id,team1,score1,' +
-        'team2,score2,results) values (?,?,?,?,?,?)', [m_id, bat, score1, bowl, score2, text],
+      tx.executeSql('INSERT INTO result (date,match_id,team1,score1,' +
+        'team2,score2,results) values (?,?,?,?,?,?,?)', [d,m_id, bat, score1, bowl, score2, text],
         (tx, results) => {
 
           console.log('Results', results.rowsAffected);

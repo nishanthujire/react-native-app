@@ -32,7 +32,7 @@ export default function SettingsScreen({ navigation }) {
       // 'team2,score2,results
 
       <View style={styles.contentBody}>
-        <Text style={{ marginBottom: 5 }}>02/06/2022 - 8:52 AM {item.match_id} </Text>
+        <Text style={{ marginBottom: 5 }}>{item.date}</Text>
         <View style={styles.card}>
           <Text style={styles.text}>{item.team1}</Text>
           <Text style={styles.text}>{item.score1}</Text>

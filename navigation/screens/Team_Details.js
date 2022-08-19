@@ -89,7 +89,7 @@ export default function TeamsDetails({ route }) {
         <TouchableOpacity style={{ marginLeft: 15, marginTop: 5, flex: 1 }}
           onPress={() => { navigation.navigate('PlayerDetails', {
               player: item.player_name,team:team, });}} >
-          <Text style={{ fontWeight: "bold", marginTop: 15 }}>{item.player_id} & {item.player_name}</Text>
+          <Text style={{ fontWeight: "bold", marginTop: 15 }}>{item.player_name}</Text>
         </TouchableOpacity>
 
 
