@@ -365,31 +365,31 @@ function Fielding() {
 
 
   useEffect(() => {
-    fetchBatsmanData();
+    fetchFieldingData();
   });
-  //selectiong player data about batting
-  const fetchBatsmanData = () => {
+ 
+  const fetchFieldingData = () => {
     //player_id INTEGER PRIMARY KEY AUTOINCREMENT,player_name TEXT,team_id INTEGER)
    // var player_name = route.params.player;
 
-
+  console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
    var player_name =global.player_name
     console.log("player_name: ", player_name);
 
    // var team = route.params.team;
    var team =global.team;
     console.log("team : ", team);
-
+    setf_match(1);
     
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT count(support)as catch  from batting where teamname = ? and support = ? and out_type = ?',
-        [team,player_name,"catch out"],
+        'SELECT count(support) as catch  from batting where support = ? and out_type = ?',
+        [player_name,"catch out"],
         (tx, results) => {
           var len = results.rows.length;
           console.log('len', len);
           if (len > 0) {
-            setf_match(1);
+          
             console.log("catch ",results.rows.item(0).catch);
             var k = results.rows.item(0).catch;
             if(k>0){
@@ -411,14 +411,13 @@ function Fielding() {
 
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT count(support)as stumping  from batting where teamname = ? and support = ? and out_type = ?',
-        [team,player_name,"stumping"],
+        'SELECT count(support)as stumping  from batting where support = ? and out_type = ?',
+        [player_name,"stumping"],
         (tx, results) => {
           var len = results.rows.length;
           console.log('len', len);
           if (len > 0) {
             
-            setf_match(1);
             console.log("stumping ",results.rows.item(0).stumping);
             var k = results.rows.item(0).stumping;
             if(k>0){
@@ -441,14 +440,14 @@ function Fielding() {
 
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT count(support)as runout  from batting where teamname = ? and support = ? and out_type = ? or out_type = ?',
-        [team,player_name,"run out striker","run out non-striker"],
+        'SELECT count(support)as runout  from batting where  support = ? and out_type = ?',
+        [player_name,"run out striker"],
         (tx, results) => {
           var len = results.rows.length;
           console.log('len', len);
           if (len > 0) {
             
-            setf_match(1);
+          
             console.log("run out ",results.rows.item(0).runout);
 
             var k = results.rows.item(0).runout;

@@ -95,7 +95,7 @@ function App() {
         <Stack.Screen name="CricketMatchScreen" component={HomeScreen}/>
         <Stack.Screen options={{title:'Match Settings', headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff',} } name="AdvancedSettings" component={AdvancedSettings} />
         <Stack.Screen options={{title:'Select Opening Players',headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff'}} name="StartMatchScreen" component={StartMatchScreen} />
-        <Stack.Screen options={{title:'India V/S Pakisthan',headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff'}} name="ScoreBoardScreen" component={ScoreBoardScreen} />
+        <Stack.Screen options={{title:'Details',headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff'}} name="ScoreBoardScreen" component={ScoreBoardScreen} />
 
         <Stack.Screen options={{title:'Team Details', headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff',}} name="Team_Details" component={Team_Details} />
         <Stack.Screen options={{title:'Player Profile', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="PlayerDetails" component={PlayerDetails}/>

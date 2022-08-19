@@ -25,26 +25,42 @@ import Overs from './screens/Overs';
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function App() {
+export default function App({ navigation, route }) {
+  global.match_id2 = route.params.match_id;
+  //console.log("details match_id : ", global.match_id2);
+
+  global.team1 = route.params.team1;
+  //console.log("team 1 : ", team1);
+  global.team2 = route.params.team2;
+  //console.log("team 2 : ", team2);
+  global.score1 = route.params.score1;
+  //console.log("score 1 : ", score1);
+  global.score2 = route.params.score2;
+  // console.log("score 2 : ", score2);
+  global.result = route.params.result;
+  //console.log("reslut is : ", result);
+
+
+
   return (
 
-      <Tab.Navigator   tabBarOptions={{
-        activeTintColor: '#fff',
-        inactiveTintColor: '#fff',
-        style: {backgroundColor: 'green'},
-        labelStyle: { textTransform: "none", fontSize: 15,},
-        indicatorStyle: {
-          backgroundColor: 'white',
-        
+    <Tab.Navigator tabBarOptions={{
+      activeTintColor: '#fff',
+      inactiveTintColor: '#fff',
+      style: { backgroundColor: 'green' },
+      labelStyle: { textTransform: "none", fontSize: 15, },
+      indicatorStyle: {
+        backgroundColor: 'white',
+
       },
-        
-}}
-      >
-      
-      
-        <Tab.Screen options={{title:'ScoreBoard'}} name="ScoreBoard" component={ScoreBoard} />
-        <Tab.Screen options={{title:'Overs'}}name="Overs" component={Overs} />
-      </Tab.Navigator>
-    
+
+    }}
+    >
+
+
+      <Tab.Screen options={{ title: 'ScoreBoard' }} name="ScoreBoard" component={ScoreBoard} />
+      <Tab.Screen options={{ title: 'Overs' }} name="Overs" component={Overs} />
+    </Tab.Navigator>
+
   );
 }

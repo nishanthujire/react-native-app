@@ -51,7 +51,7 @@ export default function SettingsScreen({ navigation }) {
 
         <View style={{ marginTop: 10, flex: 1 }}>
           <View style={styles.row}>
-            <TouchableOpacity onPress={() => navigation.navigate('Details', {
+            <TouchableOpacity onPress={() => navigation.navigate('ScoreBoardScreen', {
                     match_id: item.match_id,team1:item.team1,team2:item.team2,score1:item.score1,score2:item.score2,result:item.results
                   })}>
               <Text style={{ marginTop: 5, marginLeft: 60, width: 200 }}>Scoreboard</Text>
