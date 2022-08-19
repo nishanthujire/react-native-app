@@ -47,14 +47,29 @@ export default function TeamsScreen() {
   const navigation = useNavigation();
 
   //funtion to delete team
-  const DeleteTeam = () =>
+  const DeleteTeam = (item) =>
     Alert.alert("Delete team ?", "Are you sure you want to delete this team?   All the associated matches and players stats of this team will not be deleted.",
       [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed"), style: "cancel" },
-        { text: "Yes", onPress: () => console.log("OK Pressed") }
+        { text: "Yes", onPress: () => {deleteTeamsData(item)}},
       ]
     );
 
+  const deleteTeamsData = (item)=> {
+    db.transaction(tx => {
+      tx.executeSql(
+        'delete from teams  where team_id = ?',[item.team_id],
+      )
+    })
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'delete from players  where team_id = ?',[item.team_id],
+      )
+    })
+
+
+  }
   //function to navigate to team_details
   const navigatePlayerDetails = (item) => {
     var team_id = item.team_id;
@@ -77,11 +92,11 @@ export default function TeamsScreen() {
         <Image source={require('../screens/image/profile.jpg')} style={{ width: 50, height: 50, borderRadius: 30 }} />
         <TouchableOpacity style={{ marginLeft: 15, marginTop: 5, flex: 1 }}
           onPress={() => navigatePlayerDetails(item)} >
-          <Text style={{ fontWeight: "bold" }}>{item.team_name}</Text>
+          <Text style={{ fontWeight: "bold" }}>{item.team_name} & {item.team_id}</Text>
           <View style={styles.row}>
 
             <Text style={{ marginTop: 5 }}>Matches: </Text>
-            <Text style={{ marginTop: 6 }}>{item.team_id}</Text>
+            <Text style={{ marginTop: 6 }}>{item.total_matches}</Text>
             <Text style={{ marginTop: 5, marginLeft: 15, }}>won : </Text>
             <Text style={{ marginTop: 6 }}>{item.won}</Text>
             <Text style={{ marginTop: 5, marginLeft: 15, }}>Lost : </Text>
@@ -91,12 +106,12 @@ export default function TeamsScreen() {
 
 
         <View style={styles.icon}>
-          <TouchableOpacity onPress={() => navigation.navigate('UpdateTeam') }  >
+          <TouchableOpacity onPress={() => navigation.navigate('UpdateTeam',{team_id:item.team_id,team_name:item.team_name}) }  >
             <Ionicons style={styles.icn} name="pencil-sharp" size={23} color="black"></Ionicons>
           </TouchableOpacity>
           
           <TouchableOpacity
-            onPress={() => DeleteTeam()}>
+            onPress={() => DeleteTeam(item)}>
             <Ionicons name='trash-sharp' size={23} color="black" />
           </TouchableOpacity>
         </View>

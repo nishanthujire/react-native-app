@@ -89,9 +89,107 @@ export default WinByRuns = ({ route, navigation }) => {
             console.log('inserted run result  data ');
 
 
+
           }
         },
         (tx, error) => console.log('Error', error))
+    });
+    //increment win cout of batting team
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT total_matches,won,lost from teams where team_name = ?',
+        [bat],
+        (tx, results) => {
+          var len = results.rows.length;
+          console.log('len', len);
+          if (len > 0) {
+            
+            
+            var match = results.rows.item(0).total_matches;
+            console.log("match ",match)
+            var wincount = results.rows.item(0).won;
+            console.log("wins ",wincount);
+
+            if(match>=0){
+              match = Number(match+1);
+            }
+
+            if(wincount>=0){
+              wincount = Number(wincount+1);
+            }
+
+            db.transaction((tx) => {
+              tx.executeSql(
+                'UPDATE teams set total_matches=?,won=? where team_name = ?',
+                [match,wincount,bat],
+                (tx, results) => {
+                  console.log('Results', results.rowsAffected);
+                  if (results.rowsAffected > 0) {
+                    console.log("matches",match);
+                    console.log("win count updated",wincount);
+                  } else Alert.alert('Error');
+                }
+              );
+            });
+            
+           
+          }
+
+          
+
+           
+          }
+        
+      );
+    });
+
+    //incrementing lost count of bowling team
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT total_matches,won,lost from teams where team_name = ?',
+        [bowl],
+        (tx, results) => {
+          var len = results.rows.length;
+          console.log('len', len);
+          if (len > 0) {
+            
+            
+            var match = results.rows.item(0).total_matches;
+            console.log("match ",match)
+            var lostcount = results.rows.item(0).lost;
+            console.log("lost ",lostcount);
+
+            if(match>=0){
+              match = Number(match+1);
+            }
+
+            if(lostcount>=0){
+              lostcount = Number(lostcount+1);
+            }
+
+            db.transaction((tx) => {
+              tx.executeSql(
+                'UPDATE teams set total_matches=?,lost=? where team_name = ?',
+                [match,lostcount,bowl],
+                (tx, results) => {
+                  console.log('Results', results.rowsAffected);
+                  if (results.rowsAffected > 0) {
+                    console.log("matches",match);
+                    console.log("lost count updated",lostcount);
+                  } else Alert.alert('Error');
+                }
+              );
+            });
+            
+           
+          }
+
+          
+
+           
+          }
+        
+      );
     });
 
   }

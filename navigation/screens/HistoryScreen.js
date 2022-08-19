@@ -21,7 +21,7 @@ export default function SettingsScreen({ navigation }) {
         }
       );
     });
-    
+
   });
 
 
@@ -30,7 +30,7 @@ export default function SettingsScreen({ navigation }) {
     return (
       //   match_id,team1,score1,' +
       // 'team2,score2,results
-     
+
       <View style={styles.contentBody}>
         <Text style={{ marginBottom: 5 }}>02/06/2022 - 8:52 AM {item.match_id} </Text>
         <View style={styles.card}>
@@ -52,18 +52,18 @@ export default function SettingsScreen({ navigation }) {
         <View style={{ marginTop: 10, flex: 1 }}>
           <View style={styles.row}>
             <TouchableOpacity onPress={() => navigation.navigate('ScoreBoardScreen', {
-                    match_id: item.match_id,team1:item.team1,team2:item.team2,score1:item.score1,score2:item.score2,result:item.results
-                  })}>
+              match_id: item.match_id, team1: item.team1, team2: item.team2, score1: item.score1, score2: item.score2, result: item.results
+            })}>
               <Text style={{ marginTop: 5, marginLeft: 60, width: 200 }}>Scoreboard</Text>
             </TouchableOpacity>
-           
 
-            <TouchableOpacity
+
+            {/* <TouchableOpacity
               onPress={() => Achive()}>
               <Ionicons name="archive-sharp" size={23} color="black"></Ionicons>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
-              onPress={() => Delete()}>
+              onPress={() => Delete(item)}>
               <Ionicons name='trash-sharp' size={23} color="black" />
             </TouchableOpacity>
           </View>
@@ -84,13 +84,24 @@ export default function SettingsScreen({ navigation }) {
         { text: "Archive", onPress: () => console.log("OK Pressed") }
       ]
     );
-  const Delete = () =>
+  const Delete = (item) =>
     Alert.alert("Delete this match?", "Are you sure you want to delete this match?  All the player statistics associated with this match will also be deleted.",
       [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed"), style: "cancel" },
-        { text: "yes", onPress: () => console.log("OK Pressed") }
+        { text: "yes", onPress: () => { deleteMatchData(item) } }
       ]
     );
+
+  const deleteMatchData = (item) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'delete from result  where match_id = ? ', [item.match_id],
+      )
+    })
+
+
+  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -117,11 +128,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     elevation: 3,
-    marginLeft:15,
-    marginRight:15,
+    marginLeft: 15,
+    marginRight: 15,
     shadowColor: '#171717',
-    
-    
+
+
 
   },
   card: {
@@ -140,9 +151,9 @@ const styles = StyleSheet.create({
     // marginTop:5,
     flex: 1,
     justifyContent: 'space-between',
-   
-    
-    
+
+
+
 
   }
 

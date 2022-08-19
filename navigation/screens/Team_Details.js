@@ -53,13 +53,23 @@ export default function TeamsDetails({ route }) {
   const navigation = useNavigation();
 
   //delete a players data
-  const DeleteTeam = () =>
+  const DeleteTeam = (item) =>
     Alert.alert("Delete Player", "are you sure you want to delete this player?   All the matches playes by this payer will not be deleted",
       [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed"), style: "cancel" },
-        { text: "Yes", onPress: () => console.log("OK Pressed") }
+        { text: "Yes", onPress: () => {deletePlayerData(item)}}
       ]
     );
+
+    const deletePlayerData = (item)=> {
+      db.transaction(tx => {
+        tx.executeSql(
+          'delete from players  where team_id = ? and player_id = ?',[item.team_id,item.player_id],
+        )
+      })
+  
+  
+    }
 
 
   // const navigatePlayerDetails = (item) => {
@@ -78,18 +88,18 @@ export default function TeamsDetails({ route }) {
         <Image source={require('../screens/image/profile.jpg')} style={{ width: 50, height: 50, borderRadius: 30 }} />
         <TouchableOpacity style={{ marginLeft: 15, marginTop: 5, flex: 1 }}
           onPress={() => { navigation.navigate('PlayerDetails', {
-              player: item.player_name,team:team });}} >
-          <Text style={{ fontWeight: "bold", marginTop: 15 }}>{item.player_id}{item.player_name}</Text>
+              player: item.player_name,team:team, });}} >
+          <Text style={{ fontWeight: "bold", marginTop: 15 }}>{item.player_id} & {item.player_name}</Text>
         </TouchableOpacity>
 
 
         <View style={styles.icon}>
-          <TouchableOpacity onPress={() => navigation.navigate('UpdatePlayer') } >
+          <TouchableOpacity onPress={() => navigation.navigate('UpdatePlayer',{id:item.player_id,name:item.player_name,team:team,t_id:team_id}) } >
             <Ionicons style={styles.icn} name="pencil-sharp" size={23} color="black"></Ionicons>
           </TouchableOpacity>
           
           <TouchableOpacity
-            onPress={() => DeleteTeam()}>
+            onPress={() => DeleteTeam(item)}>
             <Ionicons name='trash-sharp' size={23} color="black" />
           </TouchableOpacity>
         </View>
