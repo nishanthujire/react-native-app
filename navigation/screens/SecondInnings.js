@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, SwipeableListView ,BackHandler} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, SwipeableListView, BackHandler } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Button, Checkbox } from 'react-native-paper';
 import * as SQLite from 'expo-sqlite';
@@ -63,7 +63,7 @@ export default function SecondInnings({ navigation, route }) {
 
 
     const [penaltyrun, setPenaltyruns] = useState(0);
-    const [match_id,setmatch_id] = useState(0);
+    const [match_id, setmatch_id] = useState(0);
 
 
     const showDialog = () => {
@@ -985,7 +985,7 @@ export default function SecondInnings({ navigation, route }) {
                     incrementbowlerovers();
                 }
 
-                
+
 
             }
         }
@@ -1115,7 +1115,7 @@ export default function SecondInnings({ navigation, route }) {
                     //console.log(teamwickets);
                     var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                     console.log(team2score);
-                    navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score,bat :bowlteam,bowl:batteam,match_id:match_id });
+                    navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id });
                 }
                 else {
                     //console.log("score ",runs);
@@ -1127,7 +1127,7 @@ export default function SecondInnings({ navigation, route }) {
 
                     //navigating to startmatch screen
                     navigation.navigate('WinByRuns', {
-                        lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score,bat :bowlteam,bowl:batteam,match_id:match_id
+                        lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id
                     });
                     runendDatainsert();
 
@@ -1271,23 +1271,23 @@ export default function SecondInnings({ navigation, route }) {
         FetchData4();
         const backAction = () => {
             Alert.alert("Hold on!", "Are you sure to exit the Match", [
-              {
-                text: "Cancel",
-                onPress: () => null,
-                style: "cancel"
-              },
-              { text: "YES", onPress: () => navigation.navigate('MainContainer') }
+                {
+                    text: "Cancel",
+                    onPress: () => null,
+                    style: "cancel"
+                },
+                { text: "YES", onPress: () => navigation.navigate('MainContainer') }
             ]);
             return true;
-          };
-      
-          const backHandler = BackHandler.addEventListener(
+        };
+
+        const backHandler = BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
-          );
-      
-          return () => backHandler.remove();
-        
+        );
+
+        return () => backHandler.remove();
+
     }, []);
 
 
@@ -1389,7 +1389,7 @@ export default function SecondInnings({ navigation, route }) {
         console.log(scr);
 
         var m_id = route.params.match_id;
-        console.log("second innings match _id",m_id);
+        console.log("second innings match _id", m_id);
 
         setmatch_id(m_id)
 
@@ -1466,7 +1466,7 @@ export default function SecondInnings({ navigation, route }) {
         console.log("striker run ", strikerrun);
         console.log("striker ball faced ", sballfaced);
 
-        
+
         incrementovers();
         incrementstrikerballfaced();
         var strikerate3;
@@ -1521,7 +1521,7 @@ export default function SecondInnings({ navigation, route }) {
             if (runs === tiescore) {
                 var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                 console.log(team2score);
-                navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score ,bat :bowlteam,bowl:batteam,match_id:match_id});
+                navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id });
 
                 runendDatainsert();
             }
@@ -1533,7 +1533,7 @@ export default function SecondInnings({ navigation, route }) {
                 console.log(team2score);
 
                 navigation.navigate('WinByRuns', {
-                    lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score,bat :bowlteam,bowl:batteam,match_id:match_id
+                    lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id
                 });
             }
 
@@ -1757,9 +1757,9 @@ export default function SecondInnings({ navigation, route }) {
 
 
 
-        var k =Number(bowlerballs + 1);
+        var k = Number(bowlerballs + 1);
 
-        var b = bover + "." +k;
+        var b = bover + "." + k;
         console.log("balls", b);
 
 
@@ -1945,9 +1945,9 @@ export default function SecondInnings({ navigation, route }) {
 
 
 
-        var k =Number(bowlerballs + 1);
+        var k = Number(bowlerballs + 1);
 
-        var b = bover + "." +k;
+        var b = bover + "." + k;
         console.log("balls", b);
 
 
@@ -1973,12 +1973,9 @@ export default function SecondInnings({ navigation, route }) {
 
 
 
-    const go = () => {
 
-        navigation.navigate('Details');
-    }
 
- 
+
 
     const Checkwin = () => {
 
@@ -1986,14 +1983,14 @@ export default function SecondInnings({ navigation, route }) {
         if (runs >= targetscore) {
             Matchenddatainsert();
             setWinscore(0);
-           
-            
-           
-            var team2score = runs + "/" + teamwickets + " " + "(" +teamovers + "." + balls + ")"
+
+
+
+            var team2score = runs + "/" + teamwickets + " " + "(" + teamovers + "." + balls + ")"
             console.log(team2score);
             //navigating to startmatch scree
             navigation.navigate('WinByWickets', {
-                wicket: teamwickets, team: batteam, team1score: team1run, team2score: team2score,bat :bowlteam,bowl:batteam,match_id:match_id
+                wicket: teamwickets, team: batteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id
             });
             checkwincall = true;
             setcheckwincalled(true);
@@ -2304,8 +2301,8 @@ export default function SecondInnings({ navigation, route }) {
                                 <TouchableOpacity>
 
                                     <View style={styles.Scorecircle}  >
-                                        <TouchableOpacity 
-                                        onPress={showDialog}
+                                        <TouchableOpacity
+                                            onPress={showDialog}
                                         >
                                             <Text style={styles.textscore} >...</Text>
                                         </TouchableOpacity>
