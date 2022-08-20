@@ -165,7 +165,7 @@ export default function HomeScreen({ navigation }) {
       bowlingteam = visitorteam;
       battingteam = hostteam;
     }
-  
+
     db.transaction((tx) => {
       tx.executeSql(
 

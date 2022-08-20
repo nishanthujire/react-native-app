@@ -2304,8 +2304,8 @@ export default function SecondInnings({ navigation, route }) {
                                 <TouchableOpacity>
 
                                     <View style={styles.Scorecircle}  >
-                                        <TouchableOpacity onPress={go}
-                                        //</View>onPress={showDialog}
+                                        <TouchableOpacity 
+                                        onPress={showDialog}
                                         >
                                             <Text style={styles.textscore} >...</Text>
                                         </TouchableOpacity>
