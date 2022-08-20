@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, SwipeableListView,BackHandler } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, SwipeableListView, BackHandler } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Button, Checkbox } from 'react-native-paper';
 import * as SQLite from 'expo-sqlite';
@@ -66,12 +66,12 @@ export default function FirstInningsScreen({ navigation, route }) {
   const [penaltyrun, setPenaltyruns] = useState(0);
 
   //variables
-  var batting = 0, bowling = 0, overs = 0,wktcount = 0;
+  var batting = 0, bowling = 0, overs = 0, wktcount = 0;
   const [Battingtm, setBattingtm] = useState(0);
   const [Bowlingtm, setBowlingtm] = useState(0);
   const [ovrs, setovrs] = useState(0);
-  const [matchovers,setmatchover] = useState(1);
-  const [match_id,setmatch_id] = useState(0);
+  const [matchovers, setmatchover] = useState(1);
+  const [match_id, setmatch_id] = useState(0);
 
 
   const showDialog = () => {
@@ -112,15 +112,15 @@ export default function FirstInningsScreen({ navigation, route }) {
     temp = Battingtm;
     setBattingtm(Bowlingtm);
     setBowlingtm(temp);
-    
-    
+
+
 
     console.log(teamwickets);
-    var team1score = teamrun+"/"+teamwickets+" "+"("+teamovers+"."+teamballs+")"
+    var team1score = teamrun + "/" + teamwickets + " " + "(" + teamovers + "." + teamballs + ")"
     console.log(team1score);
     navigation.navigate({
       name: 'StartMatchScreen2',
-      params: { battingteam: Battingtm, bowlingteam: Bowlingtm, targetscore: matchscore, targetover: ovrs, requiredrr: matchrr,team1score:team1score,match_id:match_id },
+      params: { battingteam: Battingtm, bowlingteam: Bowlingtm, targetscore: matchscore, targetover: ovrs, requiredrr: matchrr, team1score: team1score, match_id: match_id },
 
 
     });
@@ -1122,9 +1122,9 @@ export default function FirstInningsScreen({ navigation, route }) {
     );
 
     return () => backHandler.remove();
- 
 
-    
+
+
   }, []);
 
   //use effect hook to fetch news batmsan and out value
@@ -1207,7 +1207,7 @@ export default function FirstInningsScreen({ navigation, route }) {
     setBattingtm(batting);
     setBowlingtm(bowling);
     setovrs(overs);
-  
+
     //match overs hooks 
     setmatchover(overs);
     setTeamName(batting);
@@ -1616,12 +1616,9 @@ export default function FirstInningsScreen({ navigation, route }) {
 
 
 
-  const go = () => {
 
-    navigation.navigate('Details');
-  }
 
-  
+
 
 
 
@@ -1856,7 +1853,7 @@ export default function FirstInningsScreen({ navigation, route }) {
                 onPress={() =>
                   //navigating to startmatch screen
                   navigation.navigate('PlayerRetired', {
-                    striker: strikername, nonstriker: nonstrikername,batting:Battingtm
+                    striker: strikername, nonstriker: nonstrikername, batting: Battingtm
                   })}
 
               >Retire</Button>
@@ -1927,8 +1924,8 @@ export default function FirstInningsScreen({ navigation, route }) {
                 <TouchableOpacity>
 
                   <View style={styles.Scorecircle}  >
-                    <TouchableOpacity 
-                     onPress={showDialog}
+                    <TouchableOpacity
+                      onPress={showDialog}
                     >
                       <Text style={styles.textscore} >...</Text>
                     </TouchableOpacity>
