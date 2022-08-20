@@ -9,7 +9,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { RadioButton } from 'react-native-paper';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 //Import Library to make a cannon
 import ConfettiCannon from 'react-native-confetti-cannon';

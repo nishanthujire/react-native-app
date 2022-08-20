@@ -5,7 +5,7 @@ import { Button, Checkbox } from 'react-native-paper';
 import * as SQLite from 'expo-sqlite';
 import Dialog from "react-native-dialog";
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 
@@ -1652,7 +1652,7 @@ export default function FirstInningsScreen({ navigation, route }) {
 
         <Dialog.Container visible={visible2}>
           <Dialog.Title style={{ fontWeight: 'bold' }}>End of the First inning </Dialog.Title>
-          <Dialog.Description style={{ fontSize: 16 }}>{teamname} need {teamrun + 1} runs in {teamovers} overs.</Dialog.Description>
+          <Dialog.Description style={{ fontSize: 16 }}>{Bowlingtm} need {teamrun + 1} runs in {teamovers} overs.</Dialog.Description>
           <Dialog.Description style={{ fontSize: 16 }}>Required Run Rate: {((teamrun + 1) / teamovers).toFixed(2)}</Dialog.Description>
 
 

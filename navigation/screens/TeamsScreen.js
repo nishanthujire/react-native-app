@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as SQLite from 'expo-sqlite';
 
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 

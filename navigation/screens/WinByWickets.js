@@ -1,12 +1,12 @@
 import { setStatusBarHidden } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, Image,BackHandler } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, Image, BackHandler } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 // import AntDesign from 'react-native-vector-iconsAntDesign';
 import { RadioButton } from 'react-native-paper';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz')//Import Library to make a cannon
+const db = SQLite.openDatabase('db.bz')//Import Library to make a cannon
 import ConfettiCannon from 'react-native-confetti-cannon'; // returns Database object
 
 
@@ -26,7 +26,7 @@ export default WinByWickets = ({ route, navigation }) => {
     }, 1000);
     insertData2();
     const backAction = () => {
-      
+
       navigation.navigate('MainContainer');
       return true;
     };
@@ -81,12 +81,12 @@ export default WinByWickets = ({ route, navigation }) => {
     var text = team + " won by " + winwkt + " wickets.";
     console.log(text);
 
-    var d =  new Date().toLocaleString();
+    var d = new Date().toLocaleString();
     console.log(d);
 
     db.transaction(tx => {
       tx.executeSql('INSERT INTO result (date,match_id,team1,score1,' +
-        'team2,score2,results) values (?,?,?,?,?,?,?)', [d,m_id, bat, score1, bowl, score2, text],
+        'team2,score2,results) values (?,?,?,?,?,?,?)', [d, m_id, bat, score1, bowl, score2, text],
         (tx, results) => {
 
           console.log('Results', results.rowsAffected);
@@ -98,7 +98,7 @@ export default WinByWickets = ({ route, navigation }) => {
         },
         (tx, error) => console.log('Error', error))
 
-        
+
     });
 
     //increment win cout of bowling team
@@ -110,43 +110,43 @@ export default WinByWickets = ({ route, navigation }) => {
           var len = results.rows.length;
           console.log('len', len);
           if (len > 0) {
-            
-            
-            var match = results.rows.item(0).total_matches;
-            console.log("match ",match)
-            var wincount = results.rows.item(0).won;
-            console.log("wins ",wincount);
 
-            if(match>=0){
-              match = Number(match+1);
+
+            var match = results.rows.item(0).total_matches;
+            console.log("match ", match)
+            var wincount = results.rows.item(0).won;
+            console.log("wins ", wincount);
+
+            if (match >= 0) {
+              match = Number(match + 1);
             }
 
-            if(wincount>=0){
-              wincount = Number(wincount+1);
+            if (wincount >= 0) {
+              wincount = Number(wincount + 1);
             }
 
             db.transaction((tx) => {
               tx.executeSql(
                 'UPDATE teams set total_matches=?,won=? where team_name = ?',
-                [match,wincount,bowl],
+                [match, wincount, bowl],
                 (tx, results) => {
                   console.log('Results', results.rowsAffected);
                   if (results.rowsAffected > 0) {
-                    console.log("matches",match);
-                    console.log("win count updated",wincount);
+                    console.log("matches", match);
+                    console.log("win count updated", wincount);
                   } else Alert.alert('Error');
                 }
               );
             });
-            
-           
+
+
           }
 
-          
 
-           
-          }
-        
+
+
+        }
+
       );
     });
 
@@ -159,46 +159,46 @@ export default WinByWickets = ({ route, navigation }) => {
           var len = results.rows.length;
           console.log('len', len);
           if (len > 0) {
-            
-            
-            var match = results.rows.item(0).total_matches;
-            console.log("match ",match)
-            var lostcount = results.rows.item(0).lost;
-            console.log("lost ",lostcount);
 
-            if(match>=0){
-              match = Number(match+1);
+
+            var match = results.rows.item(0).total_matches;
+            console.log("match ", match)
+            var lostcount = results.rows.item(0).lost;
+            console.log("lost ", lostcount);
+
+            if (match >= 0) {
+              match = Number(match + 1);
             }
 
-            if(lostcount>=0){
-              lostcount = Number(lostcount+1);
+            if (lostcount >= 0) {
+              lostcount = Number(lostcount + 1);
             }
 
             db.transaction((tx) => {
               tx.executeSql(
                 'UPDATE teams set total_matches=?,lost=? where team_name = ?',
-                [match,lostcount,bat],
+                [match, lostcount, bat],
                 (tx, results) => {
                   console.log('Results', results.rowsAffected);
                   if (results.rowsAffected > 0) {
-                    console.log("matches",match);
-                    console.log("lost count updated",lostcount);
+                    console.log("matches", match);
+                    console.log("lost count updated", lostcount);
                   } else Alert.alert('Error');
                 }
               );
             });
-            
-           
+
+
           }
 
-          
 
-           
-          }
-        
+
+
+        }
+
       );
     });
-    
+
 
   }
 

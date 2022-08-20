@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button, Alert,BackHandler } from 're
 import HomeScreen from './CricketMatchScreen';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 

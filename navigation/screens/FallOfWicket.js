@@ -5,7 +5,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 // import AntDesign from 'react-native-vector-iconsAntDesign';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 const data = [
     { label: 'Bowled', value: 'bowled' },

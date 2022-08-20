@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert, SafeAreaView, FlatList
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 export default function SettingsScreen({ navigation }) {
   let [flatListItemsH, setFlatListItemsH] = useState([]);

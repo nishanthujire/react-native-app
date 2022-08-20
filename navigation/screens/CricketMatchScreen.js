@@ -4,7 +4,7 @@ import { RadioButton } from 'react-native-paper';
 import RadioButtonRN from 'radio-buttons-react-native';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 

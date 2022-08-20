@@ -6,7 +6,7 @@ import * as SQLite from 'expo-sqlite';
 import Dialog from "react-native-dialog";
 
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 

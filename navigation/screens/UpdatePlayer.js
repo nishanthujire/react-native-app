@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button,TextInput } from 'react-native';
 import React, { useState } from 'react';
 import * as SQLite from 'expo-sqlite';
 //db creaion
-const db = SQLite.openDatabase('db.yz') // returns Database object
+const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 export default function UpdatePlayer({navigation,route}) {
