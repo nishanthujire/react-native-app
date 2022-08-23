@@ -27,6 +27,7 @@ export default WinByWickets = ({ route, navigation }) => {
     insertData2();
     const backAction = () => {
 
+      
       navigation.navigate('MainContainer');
       return true;
     };

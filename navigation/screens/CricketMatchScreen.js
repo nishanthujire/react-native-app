@@ -8,7 +8,7 @@ const db = SQLite.openDatabase('db.bz') // returns Database object
 
 
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation ,route}) {
   //hooks
   const [hostteam, setHostteam] = useState('Host Team');
   const [visitorteam, setVisitorteam] = useState('Visitor Team');
@@ -31,6 +31,8 @@ export default function HomeScreen({ navigation }) {
     createTable();
     //deleteTable();
   }, []);
+
+
 
   //teams and matches table creation 
   const createTable = () => {
