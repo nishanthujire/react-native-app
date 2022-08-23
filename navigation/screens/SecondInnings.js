@@ -137,6 +137,10 @@ export default function SecondInnings({ navigation, route }) {
     const [batteam, setbatteam] = useState(0);
     const [bowlteam, setbowlteam] = useState(0);
     const [team1run, setteam1run] = useState(0);
+    const [team1rr,setteam1rr] = useState(0);
+    
+
+
 
 
 
@@ -1007,6 +1011,10 @@ export default function SecondInnings({ navigation, route }) {
         //bowler runs
         bruns = bowlerruns + p;
         setBowlerruns(bruns);
+
+        //remaing runs
+        remruns = targetscore - runs;
+        setWinscore(remruns);
         //changing penalty runs to zero
         setPenaltyruns(0);
 
@@ -1037,6 +1045,7 @@ export default function SecondInnings({ navigation, route }) {
         }
         //console.log(bowled);
         teamrr = runs / teambowled;
+        global.runratess = teamrr;
         //float precision fot 2 points
         var teamrr2 = teamrr.toFixed(2);
         setTeamrunrate(teamrr2);
@@ -1115,7 +1124,11 @@ export default function SecondInnings({ navigation, route }) {
                     //console.log(teamwickets);
                     var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                     console.log(team2score);
-                    navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id });
+
+                    var runrate = global.runratess.toFixed(2);
+                    console.log("team  2 runrate ",runrate);
+
+                    navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id ,team1rr:team1rr,team2rr:runrate});
                 }
                 else {
                     //console.log("score ",runs);
@@ -1125,9 +1138,12 @@ export default function SecondInnings({ navigation, route }) {
                     var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                     console.log(team2score);
 
+                    var runrate = global.runratess.toFixed(2);;
+                    console.log("team  2 runrate ***************",runrate);
+
                     //navigating to startmatch screen
                     navigation.navigate('WinByRuns', {
-                        lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id
+                        lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id,team1rr:team1rr,team2rr:runrate
                     });
                     runendDatainsert();
 
@@ -1391,6 +1407,9 @@ export default function SecondInnings({ navigation, route }) {
         var m_id = route.params.match_id;
         console.log("second innings match _id", m_id);
 
+        var team1runrate = route.params.team1runate;
+        console.log("team 1 runrate ",team1runrate);
+
         setmatch_id(m_id)
 
         setbatteam(battingTeam);
@@ -1407,6 +1426,8 @@ export default function SecondInnings({ navigation, route }) {
         //initializtion of hooks
         setWinscore(tempwinscore);
         setWinballs(tempwinballs);
+
+        setteam1rr(team1runrate);
 
     }
 
@@ -1521,7 +1542,9 @@ export default function SecondInnings({ navigation, route }) {
             if (runs === tiescore) {
                 var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                 console.log(team2score);
-                navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id });
+                var runrate = global.runratess.toFixed(2);;
+                console.log("team  2 runrate ",runrate);
+                navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id,team1rr:team1rr,team2rr:runrate});
 
                 runendDatainsert();
             }
@@ -1532,8 +1555,11 @@ export default function SecondInnings({ navigation, route }) {
                 var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                 console.log(team2score);
 
+                var runrate = global.runratess.toFixed(2);
+                console.log("team  2 runrate ",runrate);
+
                 navigation.navigate('WinByRuns', {
-                    lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id
+                    lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id,team1rr:team1rr,team2rr:runrate
                 });
             }
 
@@ -1988,9 +2014,11 @@ export default function SecondInnings({ navigation, route }) {
 
             var team2score = runs + "/" + teamwickets + " " + "(" + teamovers + "." + balls + ")"
             console.log(team2score);
+            var runrate = global.runratess.toFixed(2);
+            console.log("team  2 runrate ",runrate);
             //navigating to startmatch scree
             navigation.navigate('WinByWickets', {
-                wicket: teamwickets, team: batteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id
+                wicket: teamwickets, team: batteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id ,team1rr:team1rr,team2rr:runrate
             });
             checkwincall = true;
             setcheckwincalled(true);
@@ -2033,7 +2061,7 @@ export default function SecondInnings({ navigation, route }) {
 
                 <View style={styles.contentBody}>
                     <View style={styles.cardhead}>
-                        <Text style={{ marginBottom: 5 }}>{teamname} , 2nd innings</Text>
+                        <Text style={{ marginBottom: 5 }}>{teamname}, 2nd innings</Text>
                         <Text style={{ marginTop: 5, marginLeft: 0 }}>CRR</Text>
                         <Text style={{ marginTop: 5, marginRight: 0 }}>Target</Text>
                         <Text style={{ marginTop: 5, marginRight: 7 }}>RR</Text>

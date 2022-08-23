@@ -172,6 +172,12 @@ const ScoreBoard = ({ navigation, route }) => {
         supports = "";
         break;
       }
+      
+      case "Retired": {
+        type = 'Retired - Not out';
+        supports = "";
+        break;
+      }
 
       default: {
         type = 'not out';
@@ -266,6 +272,12 @@ const ScoreBoard = ({ navigation, route }) => {
         break;
       }
 
+      case "Retired": {
+        type = 'Retired - Not out';
+        supports = "";
+        break;
+      }
+
       default: {
         type = 'not out';
         supports = "";
@@ -313,7 +325,7 @@ const ScoreBoard = ({ navigation, route }) => {
       </DataTable.Row>
     );
   };
-
+   //global variables defined in Scoreboard container
   var team1 = global.team1;
   //console.log("team 1 : ", team1);
   var team2 = global.team2;
@@ -324,6 +336,12 @@ const ScoreBoard = ({ navigation, route }) => {
  // console.log("score 2 : ", score2);
   var result = global.result;
   //console.log("reslut is : ", result);
+
+  var team1rr = global.team1rr;
+  var team2rr = global.team2rr;
+
+
+  
 
 
 
@@ -375,7 +393,7 @@ const ScoreBoard = ({ navigation, route }) => {
         </View>
         <View style={styles.namecontainer2}>
           <Text>Total</Text>
-          <Text>{score1} 5.00</Text>
+          <Text>{score1} {team1rr}</Text>
 
 
         </View>
@@ -439,7 +457,7 @@ const ScoreBoard = ({ navigation, route }) => {
         </View>
         <View style={styles.namecontainer2}>
           <Text>Total</Text>
-          <Text>{score2} 5.00</Text>
+          <Text>{score2} {team2rr}</Text>
 
 
         </View>

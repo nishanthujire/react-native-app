@@ -39,6 +39,8 @@ export default function App({ navigation, route }) {
   // console.log("score 2 : ", score2);
   global.result = route.params.result;
   //console.log("reslut is : ", result);
+  global.team1rr = route.params.team1rr;
+  global.team2rr = route.params.team2rr;
 
 
 

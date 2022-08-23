@@ -24,6 +24,7 @@ export default function StartMatchScreen2({ route, navigation }) {
     const [trequiredrr, settrequiredrr] = useState(0);
     const [team1score,setteam1score] = useState(0);
     const [match_id,setmatch_id] = useState(0);
+    const [team1rr,setTeam1rr] = useState(0);
 
 
 
@@ -54,6 +55,9 @@ export default function StartMatchScreen2({ route, navigation }) {
         var m_id = route.params.match_id;
         console.log("start match screen 2 match_id ",m_id);
 
+        var runrate= route.params.team1rr;
+        console.log("team 1 runrate ",runrate);
+
         setmatch_id(m_id);
 
 
@@ -70,6 +74,7 @@ export default function StartMatchScreen2({ route, navigation }) {
         settover(targetover);
         settrequiredrr(requiredrr);
         setteam1score(score);
+        setTeam1rr(runrate);
 
     }
 
@@ -275,7 +280,7 @@ export default function StartMatchScreen2({ route, navigation }) {
         //navigating to startmatch screen
         navigation.navigate('SecondInnings', {
             battingteam: battingteam, bowlingteam: bowlingteam, target: tscore, targetovers: tover, targetrr: trequiredrr,
-            strikername: striker, nonstrikername: nonstriker, bowlername: bowler,team1score:team1score,match_id:match_id
+            strikername: striker, nonstrikername: nonstriker, bowlername: bowler,team1score:team1score,match_id:match_id,team1runate:team1rr
         });
 
 

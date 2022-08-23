@@ -118,9 +118,11 @@ export default function FirstInningsScreen({ navigation, route }) {
     console.log(teamwickets);
     var team1score = teamrun + "/" + teamwickets + " " + "(" + teamovers + "." + teamballs + ")"
     console.log(team1score);
+
+    var runrate = ((teamrun) / teamovers).toFixed(2);
     navigation.navigate({
       name: 'StartMatchScreen2',
-      params: { battingteam: Battingtm, bowlingteam: Bowlingtm, targetscore: matchscore, targetover: ovrs, requiredrr: matchrr, team1score: team1score, match_id: match_id },
+      params: { battingteam: Battingtm, bowlingteam: Bowlingtm, targetscore: matchscore, targetover: ovrs, requiredrr: matchrr, team1score: team1score, match_id: match_id, team1rr: runrate },
 
 
     });
@@ -1662,7 +1664,7 @@ export default function FirstInningsScreen({ navigation, route }) {
 
         <View style={styles.contentBody}>
           <View style={styles.cardhead}>
-            <Text style={{ marginBottom: 5 }}>{teamname}, 1st inning</Text>
+            <Text style={{ marginBottom: 5 }}>{teamname}, 1st innings</Text>
             <Text style={{ marginTop: 5, marginRight: 50 }}>CRR</Text>
           </View>
           <View style={styles.card}>

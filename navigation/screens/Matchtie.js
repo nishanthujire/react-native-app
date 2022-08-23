@@ -38,8 +38,8 @@ export default Matchtie = ({ route, navigation }) => {
   const createTable5 = () => {
     db.transaction(tx => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS result (date TEXT,match_id INTEGER ,team1 TEXT,score1 TEXT,' +
-        'team2 TEXT,score2 TEXT,results TEXT)')
+        'CREATE TABLE IF NOT EXISTS result (date TEXT,match_id INTEGER ,team1 TEXT,score1 TEXT,team1rr TEXT,' +
+        'team2 TEXT,score2 TEXT,team2rr TEXT,results TEXT)')
     });
   }
 
@@ -65,9 +65,15 @@ export default Matchtie = ({ route, navigation }) => {
     var d =  new Date().toLocaleString();
     console.log(d);
 
+    const team1runrate = route.params.team1rr;
+    console.log("team 1 runrate : ", team1runrate);
+
+    const team2runrate = route.params.team2rr;
+    console.log("team 2 runrate : ", team2runrate);
+
     db.transaction(tx => {
-      tx.executeSql('INSERT INTO result (date,match_id,team1,score1,' +
-        'team2,score2,results) values (?,?,?,?,?,?,?)', [d,m_id, bat, score1, bowl, score2, text],
+      tx.executeSql('INSERT INTO result (date,match_id,team1,score1,team1rr,' +
+        'team2,score2,team2rr,results) values (?,?,?,?,?,?,?,?,?)', [d,m_id, bat, score1,team1runrate, bowl, score2,team2runrate, text],
         (tx, results) => {
 
           console.log('Results', results.rowsAffected);

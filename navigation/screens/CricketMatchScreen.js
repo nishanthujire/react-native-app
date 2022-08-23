@@ -63,6 +63,11 @@ export default function HomeScreen({ navigation }) {
       alert('Both the teams cannot be the same.');
       return;
     }
+    if (overs <= 0) {
+      alert('Please Enter valid overs value.');
+      return;
+
+    }
     //inserting data into matches table
 
     db.transaction(tx => {
@@ -211,7 +216,7 @@ export default function HomeScreen({ navigation }) {
   const deleteTable = () => {
     db.transaction(tx => {
       tx.executeSql(
-        'delete from matches'
+        'drop table result'
       )
     })
   }
