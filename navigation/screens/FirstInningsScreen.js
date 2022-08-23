@@ -132,6 +132,8 @@ export default function FirstInningsScreen({ navigation, route }) {
   const [userrunsclicked, setUserrunsClicked] = useState(0);
   const [wicketfallen, setWicketfallen] = useState(false);
 
+  
+
 
 
 

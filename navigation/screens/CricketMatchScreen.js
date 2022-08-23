@@ -216,7 +216,7 @@ export default function HomeScreen({ navigation }) {
   const deleteTable = () => {
     db.transaction(tx => {
       tx.executeSql(
-        'drop table result'
+        'delete from matches'
       )
     })
   }

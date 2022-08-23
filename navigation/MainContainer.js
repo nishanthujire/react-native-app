@@ -94,12 +94,12 @@ function App() {
        }}  name="MainContainer" component={MainContainer} />
         <Stack.Screen name="CricketMatchScreen" component={HomeScreen}/>
         <Stack.Screen options={{title:'Match Settings', headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff',} } name="AdvancedSettings" component={AdvancedSettings} />
-        <Stack.Screen options={{title:'Select Opening Players',headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff'}} name="StartMatchScreen" component={StartMatchScreen} />
+        <Stack.Screen options={{title:'Select Opening Players',headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff',headerBackVisible:false}} name="StartMatchScreen" component={StartMatchScreen} />
         <Stack.Screen options={{title:'Details',headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff'}} name="ScoreBoardScreen" component={ScoreBoardScreen} />
 
         <Stack.Screen options={{title:'Team Details', headerStyle: {backgroundColor: 'green',},headerTintColor: '#fff',}} name="Team_Details" component={Team_Details} />
         <Stack.Screen options={{title:'Player Profile', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="PlayerDetails" component={PlayerDetails}/>
-        <Stack.Screen options={{title:'First Innings ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="FirstInningsScreen" component={FirstInningsScreen}/>
+        <Stack.Screen options={{title:'First Innings ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',headerBackVisible:false}}name="FirstInningsScreen" component={FirstInningsScreen}/>
         <Stack.Screen options={{title:'UpdateTeam  ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="UpdateTeam" component={UpdateTeam}/>
         <Stack.Screen options={{title:'UpdatePlayer ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="UpdatePlayer" component={UpdatePlayer}/>
         <Stack.Screen options={{title:'Fall of Wicket ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="FallOfWicket" component={FallOfWicket}/>
@@ -108,14 +108,14 @@ function App() {
         <Stack.Screen options={{title:'Fall of Wicket ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="FallOfWicket2" component={FallOfWicket2}/>
         <Stack.Screen options={{title:'Player Retired ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="PlayerRetired2" component={PlayerRetired2}/>
         <Stack.Screen options={{title:'Select new Bowler ', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="SelectNewBowler2" component={SelectNewBowler2}/>
-        <Stack.Screen options={{title:'Second Innings', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="SecondInnings" component={SecondInnings}/>
+        <Stack.Screen options={{title:'Second Innings', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',headerBackVisible:false}}name="SecondInnings" component={SecondInnings}/>
 
         
-        <Stack.Screen options={{title:'Result', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="Matchtie" component={Matchtie}/>
-        <Stack.Screen options={{title:'Result', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="WinByWickets" component={WinByWickets}/>
-        <Stack.Screen options={{title:'Result', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="WinByRuns" component={WinByRuns}/>
+        <Stack.Screen options={{title:'Result', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',headerBackVisible:false}}name="Matchtie" component={Matchtie}/>
+        <Stack.Screen options={{title:'Result', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',headerBackVisible:false}} name="WinByWickets" component={WinByWickets}/>
+        <Stack.Screen options={{title:'Result', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',headerBackVisible:false}}name="WinByRuns" component={WinByRuns}/>
         <Stack.Screen options={{title:'Details', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="Details" component={Details}/>
-        <Stack.Screen options={{title:'Select Opening Players', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',}}name="StartMatchScreen2" component={StartMatchScreen2}/>
+        <Stack.Screen options={{title:'Select Opening Players', headerStyle: {backgroundColor: 'green', },headerTintColor: '#fff',headerBackVisible:false}}name="StartMatchScreen2" component={StartMatchScreen2}/>
 
 
 

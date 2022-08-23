@@ -32,7 +32,7 @@ export default WinByRuns = ({ route, navigation }) => {
     insertData();
 
     const backAction = () => {
-      
+      navigation.clea
       navigation.navigate('MainContainer');
       return true;
     };

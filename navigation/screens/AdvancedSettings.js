@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, Switch, Button } from 'react-native'
 
 
 
-export default function AdvancedSettings() {
+export default function AdvancedSettings({navigation}) {
     const [isEnabled, setIsEnabled] = useState(true);
     const [isEnabled2, setIsEnabled2] = useState(true);
     const [isEnabled3, setIsEnabled3] = useState(true);
@@ -98,6 +98,7 @@ export default function AdvancedSettings() {
                 <Button
                     color="green"
                     title="Save settings"
+                    onPress = { () => { navigation.navigate('MainContainer')}}
                     
                 />
             </View>
