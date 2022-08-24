@@ -1019,7 +1019,7 @@ export default function FirstInningsScreen({ navigation, route }) {
     //calculating strikerate
     if (sballfaced != 0) {
       strikerate = (sruns / sballfaced) * 100;
-      strikerate = strikerate.toFixed(2);
+      strikerate = strikerate.toFixed(1);
       strikerate = Number(strikerate);
       setStrikesrate(strikerate);
     }
@@ -1272,7 +1272,7 @@ export default function FirstInningsScreen({ navigation, route }) {
     //calculating strikerate
     if (sballfaced != 0) {
       strikerate3 = (strikerrun / sballfaced) * 100;
-      strikerate3 = strikerate3.toFixed(2);
+      strikerate3 = strikerate3.toFixed(1);
       strikerate3 = Number(strikerate3);
       setStrikesrate(strikerate3);
     }
@@ -1695,7 +1695,7 @@ export default function FirstInningsScreen({ navigation, route }) {
               <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>4s </Text>
               </Col>
-              <Col size={10}>
+              <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>SRR </Text>
               </Col>
             </Row>
@@ -1715,7 +1715,7 @@ export default function FirstInningsScreen({ navigation, route }) {
               <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>{strikerfourcount} </Text>
               </Col>
-              <Col size={10} >
+              <Col size={15} >
                 <Text style={{ marginBottom: 10 }}>{strikersrate} </Text>
               </Col>
             </Row>
@@ -1735,7 +1735,7 @@ export default function FirstInningsScreen({ navigation, route }) {
               <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>{nonstrikerfourcount}</Text>
               </Col>
-              <Col size={10}>
+              <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>{nonstrikersrate}</Text>
               </Col>
             </Row>
@@ -1755,7 +1755,7 @@ export default function FirstInningsScreen({ navigation, route }) {
               <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>W </Text>
               </Col>
-              <Col size={10}>
+              <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>ER </Text>
               </Col>
             </Row>
@@ -1775,7 +1775,7 @@ export default function FirstInningsScreen({ navigation, route }) {
               <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>{bowlerwickets}</Text>
               </Col>
-              <Col size={10}>
+              <Col size={15}>
                 <Text style={{ marginBottom: 10 }}>{bowlerer} </Text>
               </Col>
             </Row>

@@ -137,8 +137,8 @@ export default function SecondInnings({ navigation, route }) {
     const [batteam, setbatteam] = useState(0);
     const [bowlteam, setbowlteam] = useState(0);
     const [team1run, setteam1run] = useState(0);
-    const [team1rr,setteam1rr] = useState(0);
-    
+    const [team1rr, setteam1rr] = useState(0);
+
 
 
 
@@ -1126,9 +1126,9 @@ export default function SecondInnings({ navigation, route }) {
                     console.log(team2score);
 
                     var runrate = global.runratess.toFixed(2);
-                    console.log("team  2 runrate ",runrate);
+                    console.log("team  2 runrate ", runrate);
 
-                    navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id ,team1rr:team1rr,team2rr:runrate});
+                    navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id, team1rr: team1rr, team2rr: runrate });
                 }
                 else {
                     //console.log("score ",runs);
@@ -1139,11 +1139,11 @@ export default function SecondInnings({ navigation, route }) {
                     console.log(team2score);
 
                     var runrate = global.runratess.toFixed(2);;
-                    console.log("team  2 runrate ***************",runrate);
+                    console.log("team  2 runrate ***************", runrate);
 
                     //navigating to startmatch screen
                     navigation.navigate('WinByRuns', {
-                        lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id,team1rr:team1rr,team2rr:runrate
+                        lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id, team1rr: team1rr, team2rr: runrate
                     });
                     runendDatainsert();
 
@@ -1196,7 +1196,7 @@ export default function SecondInnings({ navigation, route }) {
         //calculating strikerate
         if (sballfaced != 0) {
             strikerate = (sruns / sballfaced) * 100;
-            strikerate = strikerate.toFixed(2);
+            strikerate = strikerate.toFixed(1);
             strikerate = Number(strikerate);
             setStrikesrate(strikerate);
         }
@@ -1408,7 +1408,7 @@ export default function SecondInnings({ navigation, route }) {
         console.log("second innings match _id", m_id);
 
         var team1runrate = route.params.team1runate;
-        console.log("team 1 runrate ",team1runrate);
+        console.log("team 1 runrate ", team1runrate);
 
         setmatch_id(m_id)
 
@@ -1494,7 +1494,7 @@ export default function SecondInnings({ navigation, route }) {
         //calculating strikerate
         if (sballfaced != 0) {
             strikerate3 = (strikerrun / sballfaced) * 100;
-            strikerate3 = strikerate3.toFixed(2);
+            strikerate3 = strikerate3.toFixed(1);
             strikerate3 = Number(strikerate3);
             setStrikesrate(strikerate3);
         }
@@ -1543,8 +1543,8 @@ export default function SecondInnings({ navigation, route }) {
                 var team2score = runs + "/" + teamwickets + " " + "(" + overs + "." + balls + ")"
                 console.log(team2score);
                 var runrate = global.runratess.toFixed(2);;
-                console.log("team  2 runrate ",runrate);
-                navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id,team1rr:team1rr,team2rr:runrate});
+                console.log("team  2 runrate ", runrate);
+                navigation.navigate('Matchtie', { team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id, team1rr: team1rr, team2rr: runrate });
 
                 runendDatainsert();
             }
@@ -1556,10 +1556,10 @@ export default function SecondInnings({ navigation, route }) {
                 console.log(team2score);
 
                 var runrate = global.runratess.toFixed(2);
-                console.log("team  2 runrate ",runrate);
+                console.log("team  2 runrate ", runrate);
 
                 navigation.navigate('WinByRuns', {
-                    lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id,team1rr:team1rr,team2rr:runrate
+                    lost: runs, targetrun: targetscore, team: bowlteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id, team1rr: team1rr, team2rr: runrate
                 });
             }
 
@@ -2015,10 +2015,10 @@ export default function SecondInnings({ navigation, route }) {
             var team2score = runs + "/" + teamwickets + " " + "(" + teamovers + "." + balls + ")"
             console.log(team2score);
             var runrate = global.runratess.toFixed(2);
-            console.log("team  2 runrate ",runrate);
+            console.log("team  2 runrate ", runrate);
             //navigating to startmatch scree
             navigation.navigate('WinByWickets', {
-                wicket: teamwickets, team: batteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id ,team1rr:team1rr,team2rr:runrate
+                wicket: teamwickets, team: batteam, team1score: team1run, team2score: team2score, bat: bowlteam, bowl: batteam, match_id: match_id, team1rr: team1rr, team2rr: runrate
             });
             checkwincall = true;
             setcheckwincalled(true);
@@ -2096,7 +2096,7 @@ export default function SecondInnings({ navigation, route }) {
                             <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>4s </Text>
                             </Col>
-                            <Col size={10}>
+                            <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>SRR </Text>
                             </Col>
                         </Row>
@@ -2116,7 +2116,7 @@ export default function SecondInnings({ navigation, route }) {
                             <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>{strikerfourcount} </Text>
                             </Col>
-                            <Col size={10} >
+                            <Col size={15} >
                                 <Text style={{ marginBottom: 10 }}>{strikersrate} </Text>
                             </Col>
                         </Row>
@@ -2136,7 +2136,7 @@ export default function SecondInnings({ navigation, route }) {
                             <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>{nonstrikerfourcount}</Text>
                             </Col>
-                            <Col size={10}>
+                            <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>{nonstrikersrate}</Text>
                             </Col>
                         </Row>
@@ -2156,7 +2156,7 @@ export default function SecondInnings({ navigation, route }) {
                             <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>W </Text>
                             </Col>
-                            <Col size={10}>
+                            <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>ER </Text>
                             </Col>
                         </Row>
@@ -2176,7 +2176,7 @@ export default function SecondInnings({ navigation, route }) {
                             <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>{bowlerwickets}</Text>
                             </Col>
-                            <Col size={10}>
+                            <Col size={15}>
                                 <Text style={{ marginBottom: 10 }}>{bowlerer} </Text>
                             </Col>
                         </Row>
